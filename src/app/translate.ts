@@ -16,13 +16,13 @@ export function translate(s: string) {
         return s;
     let r = terms[s];
     if (!r){
-        r =  s.replace(/משפחה אחת/g,"חייל אחד")
-        .replace(/משפחות חוזרות/g,'חיילים חוזרים')
-        .replace(/משפחות מיוחדות/g,"חיילים מיוחדים")
-        .replace(/מש' הכי קרובה/g,'חייל הכי קרוב')
-        .replace(/משפחה כלשהי/g,'חייל כלשהו')
-        .replace(/משפחות/g,"חיילים")
-        .replace(/משפחה/g,'חייל');
+        r =  s.replace(/תורם אחד/g,"חייל אחד")
+        .replace(/תורמים חוזרים/g,'חיילים חוזרים')
+        .replace(/תורמים מיוחדים/g,"חיילים מיוחדים")
+        .replace(/תורם הכי קרוב/g,'חייל הכי קרוב')
+        .replace(/תורם כלשהו/g,'חייל כלשהו')
+        .replace(/תורמים/g,"חיילים")
+        .replace(/תורם/g,'חייל');
         terms[s]=r;
     }
     return r;

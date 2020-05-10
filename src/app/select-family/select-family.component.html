@@ -11,7 +11,7 @@
         </mat-form-field>
         <button mat-raised-button color="accent" *ngIf="args.selectStreet&&families.totalRows>1&&searchString"
           (click)="selectAllInStreet()">שייכי {{families.totalRows}}
-          משפחות ברחוב: {{searchString}}</button>
+          תורמים ברחוב: {{searchString}}</button>
         <div>
           <div *ngFor="let f of families.items" (click)="select(f)">
             <div>
@@ -34,7 +34,7 @@
       </form>
       <button mat-raised-button color="accent" (click)="moreFamilies()"
         *ngIf=" families.items.length!=families.totalRows">עוד
-        {{'משפחות'|translate}}
+        {{'תורמים'|translate}}
       </button>
     </div>
   </mat-card>

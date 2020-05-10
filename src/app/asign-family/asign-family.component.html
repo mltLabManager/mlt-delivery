@@ -70,7 +70,7 @@
         <div class="filter-div">
           <mat-form-field appearance="outline" class="full-width-form-field dense-form-field"
             *ngIf="settings.showGroupsOnAssing.value">
-            <mat-label>קבוצות שיוך משפחה</mat-label>
+            <mat-label>קבוצות שיוך תורם</mat-label>
             <select matNativeControl class="form-control" #lang (change)="refreshBaskets()" [(ngModel)]="filterGroup">
               <option value="">כל הקבוצות</option>
               <option *ngFor="let g of groups" value="{{g.name.value}}">{{g.name.value}} - {{g.familiesCount.value}}
@@ -105,7 +105,7 @@
 
           <mat-form-field appearance="outline" class="full-width-form-field dense-form-field"
             *ngIf="settings.showNumOfBoxesOnAssing.value">
-            <mat-label>{{'מספר משפחות'|translate}}</mat-label>
+            <mat-label>{{'מספר תורמים'|translate}}</mat-label>
             <input matInput type="number" id="numOfBaskets" [(ngModel)]="numOfBaskets">
             <div matSuffix style="display:flex">
               <button mat-icon-button (click)="add(1)">
@@ -118,7 +118,7 @@
           </mat-form-field>
 
           <mat-checkbox [(ngModel)]="preferRepeatFamilies" style="width:auto" *ngIf="showRepeatFamilies">
-            {{'עדיפות למשפחות חוזרות'|translate}} ({{repeatFamilies}})
+            {{'עדיפות לתורמים חוזרים'|translate}} ({{repeatFamilies}})
           </mat-checkbox>
 
         </div>
@@ -141,15 +141,15 @@
           </button>
           <mat-menu #basketMenu="matMenu">
             <button mat-menu-item (click)="assignItem(true)"
-              *ngIf="preferRepeatFamilies&&repeatFamilies>0">{{'הוסף את כל המשפחות החוזרות'|translate}}</button>
+              *ngIf="preferRepeatFamilies&&repeatFamilies>0">{{'הוסף את כל התורמים החוזרים'|translate}}</button>
             <button mat-menu-item (click)="addSpecial()"
-              *ngIf="specialFamilies">{{'משפחות מיוחדות - '|translate}}{{specialFamilies}}</button>
-            <button mat-menu-item (click)="addSpecific()">{{'בחירת משפחה לפי שם'|translate}}</button>
-            <button mat-menu-item (click)="assignOnMap()">{{'בחירת משפחה על המפה'|translate}}</button>
-            <button mat-menu-item (click)="addStreet()">{{'בחירת משפחה לפי רחוב'|translate}}</button>
+              *ngIf="specialFamilies">{{'תורמים מיוחדים - '|translate}}{{specialFamilies}}</button>
+            <button mat-menu-item (click)="addSpecific()">{{'בחירת תורם לפי שם'|translate}}</button>
+            <button mat-menu-item (click)="assignOnMap()">{{'בחירת תורם על המפה'|translate}}</button>
+            <button mat-menu-item (click)="addStreet()">{{'בחירת תורם לפי רחוב'|translate}}</button>
 
 
-            <button mat-menu-item (click)="moveBasktesFromOtherHelper()">{{'העבר משפחות ממתנדב אחר'|translate}}</button>
+            <button mat-menu-item (click)="moveBasktesFromOtherHelper()">{{'העבר תורמים ממתנדב אחר'|translate}}</button>
             <button mat-menu-item (click)="doRefreshRoute()">{{'חשב מסלול מחדש'|translate}}</button>
 
           </mat-menu>

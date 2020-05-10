@@ -341,7 +341,7 @@ export class ManageComponent implements OnInit {
     let correctCodeWord = codeWords[Math.trunc(Math.random() * codeWords.length)];
     let doIt = false;
     let count = await this.context.for(Families).count(f => f.status.isEqualTo(FamilyStatus.ToDelete));
-    if (!await this.dialog.YesNoPromise("האם אתה בטוח שאתה רוצה למחוק " + count + " משפחות?"))
+    if (!await this.dialog.YesNoPromise("האם אתה בטוח שאתה רוצה למחוק " + count + " תורמים?"))
       return;
     await this.context.openDialog(InputAreaComponent, x => {
       x.args = {
@@ -356,7 +356,7 @@ export class ManageComponent implements OnInit {
       return;
     }
     let r = await ManageComponent.deleteFamiliesOnServer();
-    this.dialog.Info('נמחקו ' + r + ' משפחות');
+    this.dialog.Info('נמחקו ' + r + ' תורמים');
   }
   @ServerFunction({ allowed: Roles.admin })
   static async deleteFamiliesOnServer(context?: Context) {

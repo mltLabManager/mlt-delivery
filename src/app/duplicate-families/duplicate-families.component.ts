@@ -31,9 +31,9 @@ export class DuplicateFamiliesComponent implements OnInit {
   }
   async showFamilies(d: duplicateFamilies) {
     await this.context.openDialog(GridDialogComponent, x => x.args = {
-      title: 'משפחות ב' + d.address,
+      title: 'תורמים ב' + d.address,
       buttons: [{
-        text: 'מזג משפחות',
+        text: 'מזג תורמים',
         click: async () => { await this.mergeFamilies(x); }
       }],
       settings: this.context.for(Families).gridSettings({
@@ -69,10 +69,10 @@ export class DuplicateFamiliesComponent implements OnInit {
                   actionRowsFilterInfo: packWhere(this.context.for(Families).create(), where)
                 };
               }, settings: this.settings,
-              groupName: 'משפחות'
+              groupName: 'תורמים'
             })
           , {
-            name: 'מיזוג משפחות',
+            name: 'מיזוג תורמים',
             click: async () => {
               await this.mergeFamilies(x);
 
@@ -88,7 +88,7 @@ export class DuplicateFamiliesComponent implements OnInit {
         knowTotalRows: true,
         rowButtons: [
           {
-            name: 'פרטי משפחה',
+            name: 'פרטי תורם',
             click: f => f.showFamilyDialog()
           },
           {
@@ -111,15 +111,15 @@ export class DuplicateFamiliesComponent implements OnInit {
   private async mergeFamilies(x: GridDialogComponent) {
     let items = x.args.settings.selectedRows.length > 0 ? [...x.args.settings.selectedRows] : [...x.args.settings.items];
     if (items.length == 0) {
-      await this.dialog.Error('לא נבחרו משפחות');
+      await this.dialog.Error('לא נבחרו תורמים');
       return;
     }
     if (items.length == 1) {
-      await this.dialog.Error('אין מה למזג משפחה אחת');
+      await this.dialog.Error('אין מה למזג תורם אחד');
       return;
     }
     if (items.length > 10) {
-      await this.dialog.Error('יותר מידי משפחות בבת אחת');
+      await this.dialog.Error('יותר מידי תורמים בבת אחת');
       return;
     }
     await this.context.openDialog(MergeFamiliesComponent, y => y.families = items, y => {

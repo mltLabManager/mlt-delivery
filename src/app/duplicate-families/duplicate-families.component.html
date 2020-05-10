@@ -2,7 +2,7 @@
     <tr>
         <th></th>
         <th>כתובת</th>
-        <th>מספר משפחות</th>
+        <th>מספר תורמים</th>
         <th>סה"כ {{duplicateFamilies.length}}</th>
         <th>מיקום</th>
     </tr>
@@ -10,7 +10,7 @@
         <td>{{i+1}}</td>
         <td> {{d.address}}</td>
         <td>{{d.count}}</td>
-        <td><a (click)="showFamilies(d)">הצג משפחות</a></td>
+        <td><a (click)="showFamilies(d)">הצג תורמים</a></td>
         <td>{{d.lat}},{{d.lng}}</td>
     </tr>
 </table>

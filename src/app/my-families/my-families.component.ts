@@ -15,7 +15,7 @@ import { ApplicationSettings } from '../manage/ApplicationSettings';
 export class MyFamiliesComponent implements OnInit {
 
   static route: Route = {
-    path: 'my-families', component: MyFamiliesComponent, canActivate: [SignedInGuard], data: { name: 'משפחות שלי' }
+    path: 'my-families', component: MyFamiliesComponent, canActivate: [SignedInGuard], data: { name: 'תורמים שלי' }
   };
   familyLists = new UserFamiliesList(this.context);
   user:HelperUserInfo;

@@ -1,4 +1,4 @@
-<h1 mat-dialog-title *ngIf="family">מיזוג למשפחת {{family.name.value}}</h1>
+<h1 mat-dialog-title *ngIf="family">מיזוג לתורם {{family.name.value}}</h1>
 <div mat-dialog-content>
     <table class="table table-bordered my-table" *ngIf="gs">
         <tr *ngFor="let c of gs.columns.items">
@@ -18,10 +18,10 @@
         </tr>
         <tr>
             <td>
-                <a (click)="updateCurrentFamily()">כרטיס המשפחה</a>
+                <a (click)="updateCurrentFamily()">כרטיס התורם</a>
             </td>
             <td *ngFor="let f of families">
-                <a (click)="updateFamily(f)">כרטיס המשפחה</a><br>
+                <a (click)="updateFamily(f)">כרטיס התורם</a><br>
                 <a (click)="f.showDeliveryHistoryDialog()">משלוחים</a>
             </td>
         </tr>

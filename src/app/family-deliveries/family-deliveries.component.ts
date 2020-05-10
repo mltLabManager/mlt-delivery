@@ -516,7 +516,7 @@ export class FamilyDeliveriesComponent implements OnInit, OnDestroy {
           return await this.buildWhereForAction(actionWhere);
         },
         settings: this.settings,
-        groupName: 'משפחות'
+        groupName: 'תורמים'
       }),
       {
         name: 'יצוא לאקסל',
@@ -564,7 +564,7 @@ export class FamilyDeliveriesComponent implements OnInit, OnDestroy {
         visible: d => d.deliverStatus.value == DeliveryStatus.ReadyForDelivery && d.courier.value != ''
       },
       {
-        name: 'משלוחים למשפחה',
+        name: 'משלוחים לתורם',
         click: async fd => {
           let f = await this.context.for(Families).findId(fd.family);
           f.showDeliveryHistoryDialog();

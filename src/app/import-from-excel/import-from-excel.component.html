@@ -130,16 +130,16 @@
                                                 <li *ngFor="let f of i.duplicateFamilyInfo"
                                                     [class.error]="f.removedFromList">
                                                     {{f.name}} - {{displayDupInfo(f)}} - <a
-                                                        (click)="updateFamily(f)">{{'הצג פרטי משפחה'|translate}}</a>
+                                                        (click)="updateFamily(f)">{{'הצג פרטי תורם'|translate}}</a>
                                                     <br>
-                                                    <a (click)="moveFromErrorToUpdate(i,f)">השווה מול משפחה זו והעבר
-                                                        למשפחות
+                                                    <a (click)="moveFromErrorToUpdate(i,f)">השווה מול תורם זו והעבר
+                                                        לתורמים
                                                         עדכון</a>
                                                 </li>
                                             </ul>
                                             <a (click)="moveFromErrorToAdd(i)"><span *ngIf="i.duplicateFamilyInfo">
-                                                    אף אחת מהמשפחות הללו אינה מתאימה לשורה באקסל, </span>
-                                                העבר למשפחות חדשות</a>
+                                                    אף אחד מהתורמים הללו אינו מתאים לשורה באקסל, </span>
+                                                העבר לתורמים חדשים</a>
                                         </td>
                                     </tr>
                                     <ng-container *ngIf="i.otherExcelRow">
@@ -173,7 +173,7 @@
                         <mat-checkbox [(ngModel)]="stopAskingQuestions">הפסק לשאול האם מסכים לפני כל דבר</mat-checkbox>
                     </div>
                 </mat-tab>
-                <mat-tab label="{{'משפחות לעדכון'|translate}} - {{updateRows.length}}"
+                <mat-tab label="{{'תורמים לעדכון'|translate}} - {{updateRows.length}}"
                     *ngIf="updateRows&&updateRows.length">
                     <div class="table-div">
                         <table class="table table-bordered" style="white-space: nowrap;">
@@ -193,11 +193,11 @@
                                     <td>
                                         <mat-menu #updatedRowOptions="matMenu">
                                             <button mat-menu-item
-                                                (click)="openFamilyInfo(i)">{{'כרטיס משפחה'|translate}}</button>
+                                                (click)="openFamilyInfo(i)">{{'כרטיס תורם'|translate}}</button>
                                             <button mat-menu-item
-                                                (click)="updateRows.splice(updateRows.indexOf(i),1)">{{'הסר ממשפחות לעדכן'|translate}}</button>
+                                                (click)="updateRows.splice(updateRows.indexOf(i),1)">{{'הסר מתורמים לעדכן'|translate}}</button>
                                             <button mat-menu-item
-                                                (click)="moveFromUpdateToAdd(i)">{{'העבר למשפחות חדשות'|translate}}</button>
+                                                (click)="moveFromUpdateToAdd(i)">{{'העבר לתורמים חדשות'|translate}}</button>
                                         </mat-menu>
 
                                         <button mat-icon-button [matMenuTriggerFor]="updatedRowOptions">
@@ -226,9 +226,9 @@
                     <pagination-controls (pageChange)="updateRowsPage = $event" previousLabel="קודם" nextLabel="הבא"
                         id="updateRows"></pagination-controls>
                 </mat-tab>
-                <mat-tab label="{{'משפחות חדשות'|translate}} - {{newRows.length}}" *ngIf="newRows&&newRows.length">
+                <mat-tab label="{{'תורמים חדשים'|translate}} - {{newRows.length}}" *ngIf="newRows&&newRows.length">
                     <button (click)="addAll()" mat-raised-button
-                        color="accent">{{'הוסף את כל המשפחות'|translate}}</button>
+                        color="accent">{{'הוסף את כל התורמים'|translate}}</button>
                     <div class="table-div">
 
                         <table class="table table-bordered" style="white-space: nowrap;">
@@ -262,7 +262,7 @@
 
                 </mat-tab>
 
-                <mat-tab label="{{'משפחות קיימות'|translate}} - {{identicalRows.length}}"
+                <mat-tab label="{{'תורמים קיימים'|translate}} - {{identicalRows.length}}"
                     *ngIf="identicalRows&&identicalRows.length">
                     <div class="table-div">
                         <table class="table table-bordered" style="white-space: nowrap;">

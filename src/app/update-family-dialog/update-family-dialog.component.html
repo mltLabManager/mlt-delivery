@@ -4,7 +4,7 @@
         <mat-menu #appMenu77>
             <button mat-menu-item (click)="newDelivery()" *ngIf="!this.families.currentRow.isNew()">משלוח
                 חדש</button>
-            <button mat-menu-item (click)="preview()">הצג משפחה כפי שתנדב יראה אותה</button>
+            <button mat-menu-item (click)="preview()">הצג תורם כפי שתנדב יראה אותה</button>
             <button mat-menu-item (click)="families.currentRow.showDeliveryHistoryDialog()"
                 *ngIf="!this.families.currentRow.isNew()">משלוחים</button>
             <button mat-menu-item (click)="updateInfo()" *ngIf="!this.families.currentRow.isNew()">פרטי
@@ -136,7 +136,7 @@
                     <mat-expansion-panel-header>
                         <div>
                             <mat-panel-title style="color:red">
-                                משפחות עם פרטים דומים {{families.currentRow.duplicateFamilies.length}}
+                                תורמים עם פרטים דומים {{families.currentRow.duplicateFamilies.length}}
                             </mat-panel-title>
                         </div>
                     </mat-expansion-panel-header>

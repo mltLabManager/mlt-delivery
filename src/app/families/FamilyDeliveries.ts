@@ -139,8 +139,8 @@ export class FamilyDeliveries extends IdEntity {
         caption: 'כתובת תקינה',
         allowApiUpdate: false
     });
-    fixedCourier = new HelperId(this.context, { caption: "מתנדב ברירת מחדל למשפחה", allowApiUpdate: false });
-    familyMembers = new NumberColumn({ caption: 'מספר נפשות למשפחה', allowApiUpdate: false });
+    fixedCourier = new HelperId(this.context, { caption: "מתנדב ברירת מחדל לתורם", allowApiUpdate: false });
+    familyMembers = new NumberColumn({ caption: 'מספר נפשות לתורם', allowApiUpdate: false });
 
 
     phone1 = new PhoneColumn({
@@ -418,7 +418,7 @@ export class FamilyDeliveries extends IdEntity {
                 });
             }
             else {
-                await callerHelper.dialog.Error('פרטי משפחה לא נמצאו - ייתכן ומחקתם אותה?');
+                await callerHelper.dialog.Error('פרטי תורם לא נמצאו - ייתכן ומחקתם אותה?');
                 showFamilyDetails = false;
             }
         }

@@ -61,7 +61,7 @@ export class ApplicationSettings extends Entity<number>  {
   commentForSuccessDelivery = new StringColumn('הודעה למתנדב כאשר נמסר בהצלחה');
   commentForSuccessLeft = new StringColumn('הודעה למתנדב כאשר הושאר ליד הבית');
   commentForProblem = new StringColumn('הודעה למתנדב כאשר יש בעיה');
-  messageForDoneDelivery = new StringColumn(translate('הודעה למתנדב כאשר סיים את כל המשפחות'));
+  messageForDoneDelivery = new StringColumn(translate('הודעה למתנדב כאשר סיים את כל התורמים'));
 
   helpText = new StringColumn('שם חלופי');
   helpPhone = new PhoneColumn('טלפון חלופי');
@@ -99,30 +99,30 @@ export class ApplicationSettings extends Entity<number>  {
   message2Text = new StringColumn('מלל חופשי 2 למתנדב');
   message2Link = new StringColumn('כתובת אינטרנט ללחיצה על מלל חופשי 2 למתנדב');
   message2OnlyWhenDone = new BoolColumn('להציג מלל חופשי 2 רק כאשר המתנדב סיים אל כל הסלים');
-  forSoldiers = new BoolColumn('המערכת היא עבור חיילים לא משפחות');
+  forSoldiers = new BoolColumn('המערכת היא עבור חיילים לא תורמים');
 
-  usingSelfPickupModule = new BoolColumn('ישנן משפחות שבאות לקחת ממרכז החלוקה');
+  usingSelfPickupModule = new BoolColumn('ישנן תורמים שבאות לקחת ממרכז החלוקה');
   showCompanies = new BoolColumn('שמור מטעם איזה חברה הגיע המתנדב');
   manageEscorts = new BoolColumn('הפעל ניהול מלווים לנהגים');
   showHelperComment = new BoolColumn('שמור הערה למתנדב');
-  showGroupsOnAssing = new BoolColumn('סינון קבוצת משפחה');
+  showGroupsOnAssing = new BoolColumn('סינון קבוצת תורם');
   showCityOnAssing = new BoolColumn('סינון עיר');
   showAreaOnAssing = new BoolColumn('סינון אזור');
   showBasketOnAssing = new BoolColumn('סינון סוג סל');
-  showNumOfBoxesOnAssing = new BoolColumn('בחירת מספר משפחות');
+  showNumOfBoxesOnAssing = new BoolColumn('בחירת מספר תורמים');
   showLeftThereButton = new BoolColumn('הצג למתנדב כפתור השארתי ליד הבית');
   redTitleBar = new BoolColumn("כותרת דף בצבע אדום");
   defaultPrefixForExcelImport = new StringColumn("קידומת טלפון ברירת מחדל בקליטה מאקסל");
-  checkIfFamilyExistsInDb = new BoolColumn("בדוק אם משפחה כבר קיימת במאגר הנתונים");
+  checkIfFamilyExistsInDb = new BoolColumn("בדוק אם תורם כבר קיימת במאגר הנתונים");
   removedFromListStrategy = new RemovedFromListExcelImportStrategyColumn();
-  checkIfFamilyExistsInFile = new BoolColumn("בדוק אם משפחה כבר קיימת בקובץ האקסל");
+  checkIfFamilyExistsInFile = new BoolColumn("בדוק אם תורם כבר קיימת בקובץ האקסל");
   excelImportAutoAddValues = new BoolColumn("הוסף בלי לשאול ערכים לטבלאות התשתית");
   checkDuplicatePhones = new BoolColumn("בדוק טלפונים כפולים");
 
 
   addressApiResult = new StringColumn();
   defaultStatusType = new DeliveryStatusColumn({
-    caption: translate('סטטוס משלוח ברירת מחדל למשפחות חדשות')
+    caption: translate('סטטוס משלוח ברירת מחדל לתורמים חדשות')
   }, [DeliveryStatus.ReadyForDelivery, DeliveryStatus.SelfPickup]);
   private _lastString: string;
   private _lastGeo: GeocodeInformation;
@@ -181,7 +181,7 @@ export class PhoneOption {
       args.addPhone(h.name.value, h.phone.displayValue);
     }
   });
-  static familyHelpPhone = new PhoneOption("familyHelpPhone", "איש קשר לבירור כפי שמוגדר למשפחה", async args => {
+  static familyHelpPhone = new PhoneOption("familyHelpPhone", "איש קשר לבירור כפי שמוגדר לתורם", async args => {
     if (args.family.socialWorker.value && args.family.socialWorkerPhone1.value) {
       args.addPhone(args.family.socialWorker.value, args.family.socialWorkerPhone1.displayValue);
     }
@@ -252,14 +252,14 @@ export class SettingsService {
 }
 export class RemovedFromListExcelImportStrategy {
   static displayAsError = new RemovedFromListExcelImportStrategy(0, 'הצג כשגיאה');
-  static showInUpdate = new RemovedFromListExcelImportStrategy(1, 'הצג במשפחות לעדכון');
-  static ignore = new RemovedFromListExcelImportStrategy(2, 'התעלם והוסף משפחה חדשה');
+  static showInUpdate = new RemovedFromListExcelImportStrategy(1, 'הצג בתורמים לעדכון');
+  static ignore = new RemovedFromListExcelImportStrategy(2, 'התעלם והוסף תורם חדשה');
   constructor(public id: number, public caption: string) { }
 }
 class RemovedFromListExcelImportStrategyColumn extends ValueListColumn<RemovedFromListExcelImportStrategy>{
   constructor() {
     super(RemovedFromListExcelImportStrategy, {
-      caption: 'מה לעשות אם נמצאה משפחה תואמת המסומנת כהוצא מהרשימות'
+      caption: 'מה לעשות אם נמצאה תורם תואמת המסומנת כהוצא מהרשימות'
       , dataControlSettings: () => ({
         valueList: this.getOptions(),
 

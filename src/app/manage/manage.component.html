@@ -24,7 +24,7 @@
             <mat-card-title>
                 הטלפון ממנו יצא הSMS
             </mat-card-title>
-            כאשר נשלחת הודעת SMS למתנדב, היא מוצגת כאילו היא יצאה מהטלפון של מי ששייך לו את המשפחות ולחץ על הכפתור שלח
+            כאשר נשלחת הודעת SMS למתנדב, היא מוצגת כאילו היא יצאה מהטלפון של מי ששייך לו את התורמים ולחץ על הכפתור שלח
             SMS.
             ניתן להגדיר כאן שם חלופי וטלפון חלופי
             <br />
@@ -34,7 +34,7 @@
             <mat-card-title>
                 {{settings.smsText.defs.caption}}
             </mat-card-title>
-            הודעה זו תשלח למתנדב ממסך שיוך משלוחים - עם הקישור למשפחות להן הוא מתבקש לחלק.
+            הודעה זו תשלח למתנדב ממסך שיוך משלוחים - עם הקישור לתורמים להן הוא מתבקש לחלק.
             <ul>
                 <li>!מתנדב! - יוחלף בשם המתנדב</li>
                 <li>!שולח! - יוחלף בשם השולח</li>
@@ -91,12 +91,12 @@
     <mat-expansion-panel>
         <mat-expansion-panel-header>
             <mat-panel-title>
-                {{'קבוצות משפחות'|translate}}
+                {{'קבוצות תורמים'|translate}}
             </mat-panel-title>
 
         </mat-expansion-panel-header>
 
-        {{'קבוצות אלו יוצגו בשיוך משפחות ויאפשרו סינון מהיר'|translate}}
+        {{'קבוצות אלו יוצגו בשיוך תורמים ויאפשרו סינון מהיר'|translate}}
         <data-grid [settings]="groups" height="300"></data-grid>
 
     </mat-expansion-panel>
@@ -242,8 +242,8 @@
         <mat-expansion-panel-header>
             מחיקת נתונים
         </mat-expansion-panel-header>
-        לחיצה על הכפתור תמחוק את כל המשפחות בסטטוס "למחיקה" מהמערכת. היסטורית המשלוחים שלהן תישמרנה.
+        לחיצה על הכפתור תמחוק את כל התורמים בסטטוס "למחיקה" מהמערכת. היסטורית המשלוחים שלהן תישמרנה.
         <br><br>
-        <button mat-raised-button (click)="deleteFamilies()" color="accent">מחק את כל המשפחות בסטטוס "למחיקה"</button>
+        <button mat-raised-button (click)="deleteFamilies()" color="accent">מחק את כל התורמים בסטטוס "למחיקה"</button>
     </mat-expansion-panel>
 </mat-accordion>

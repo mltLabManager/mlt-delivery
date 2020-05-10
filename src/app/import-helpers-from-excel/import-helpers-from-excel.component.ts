@@ -401,7 +401,7 @@ export class ImportHelpersFromExcelComponent implements OnInit {
 
   }
   async doImport() {
-    this.dialog.YesNoQuestion("האם אתה בטוח שאתה מעוניין לקלוט " + (this.totalRows - 1) + translate(" משפחות מאקסל?"), async () => {
+    this.dialog.YesNoQuestion("האם אתה בטוח שאתה מעוניין לקלוט " + (this.totalRows - 1) + translate(" תורמים מאקסל?"), async () => {
       await this.iterateExcelFile(true);
     });
   }
@@ -512,7 +512,7 @@ export class ImportHelpersFromExcelComponent implements OnInit {
         for (const iterator of collected) {
           if (iterator.length > 1) {
             for (const row of iterator) {
-              row.error = translate('אותה משפחה באתר מתאימה למספר שורות באקסל: ') + iterator.map(x => x.rowInExcel.toString()).join(', ');
+              row.error = translate('אותה תורם באתר מתאימה למספר שורות באקסל: ') + iterator.map(x => x.rowInExcel.toString()).join(', ');
               this.errorRows.push(row);
               this.updateRows.splice(this.updateRows.indexOf(row), 1);
             }

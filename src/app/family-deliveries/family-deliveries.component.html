@@ -23,7 +23,7 @@
 <div style="display:flex;justify-content: space-between">
     <div>
         <mat-form-field>
-            <input matInput [(ngModel)]="searchString" (input)="doSearch()" placeholder="{{'חיפוש משפחה'|translate}}"
+            <input matInput [(ngModel)]="searchString" (input)="doSearch()" placeholder="{{'חיפוש תורם'|translate}}"
                 [ngModelOptions]="{standalone: true}">
             <mat-icon matSuffix (click)="clearSearch()">clear</mat-icon>
         </mat-form-field>
@@ -34,7 +34,7 @@
     <div>
        
         <button mat-raised-button color="primary" (click)="newFamily()"
-            *ngIf="isAdmin">{{'משפחה חדשה'|translate}}</button>
+            *ngIf="isAdmin">{{'תורם חדש'|translate}}</button>
 
 
     </div>

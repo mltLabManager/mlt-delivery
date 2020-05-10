@@ -99,7 +99,7 @@ export class Families extends IdEntity {
         validate: async () => {
           let count = await newDelivery.duplicateCount();
           if (count > 0) {
-            if (await dialog.YesNoPromise("למשפחה זו כבר קיים משלוח מאותו סוג האם להוסיף עוד אחד?")) {
+            if (await dialog.YesNoPromise("לתורם זו כבר קיים משלוח מאותו סוג האם להוסיף עוד אחד?")) {
               return;
             }
             else {
@@ -285,7 +285,7 @@ export class Families extends IdEntity {
         }
 
       });
-    this.id.defs.caption = 'id של המשפחה באפליקצית חגי';
+    this.id.defs.caption = 'id של התורם באפליקצית חגי';
   }
   disableChangeLogging = false;
   disableOnSavingRow = false;
@@ -335,7 +335,7 @@ export class Families extends IdEntity {
   groups = new GroupsColumn(this.context);
   special = new YesNoColumn({ caption: 'שיוך מיוחד' });
   defaultSelfPickup = new BoolColumn('באים לקחת ברירת מחדל');
-  iDinExcel = new StringColumn({ caption: 'מזהה חד ערכי למשפחה' });
+  iDinExcel = new StringColumn({ caption: 'מזהה חד ערכי לתורם' });
   internalComment = new StringColumn({ caption: 'הערה פנימית - לא תופיע למתנדב' });
 
 
@@ -559,14 +559,14 @@ export class Families extends IdEntity {
             let duration = '';
             if (n.courierAssingTime.value && n.deliveryStatusDate.value)
               duration = ' תוך ' + Math.round((n.deliveryStatusDate.value.valueOf() - n.courierAssingTime.value.valueOf()) / 60000) + " דק'";
-            return n.deliverStatus.displayValue + (n.courierComments.value ? ", " + n.courierComments.value + " - " : '') + translate(' למשפחת ') + n.name.value + ' על ידי ' + courierName + duration + "!!";
+            return n.deliverStatus.displayValue + (n.courierComments.value ? ", " + n.courierComments.value + " - " : '') + translate(' לתורם ') + n.name.value + ' על ידי ' + courierName + duration + "!!";
         }
-        return translate('משפחת ') + n.name.value + ' עודכנה ל' + n.deliverStatus.displayValue;
+        return translate('התורם ') + n.name.value + ' עודכנה ל' + n.deliverStatus.displayValue;
       case 2:
         if (n.courier.value)
-          return translate('משפחת ') + n.name.value + ' שוייכה ל' + courierName;
+          return translate('התורם ') + n.name.value + ' שוייכה ל' + courierName;
         else
-          return translate("בוטל השיוך למשפחת ") + n.name.value;
+          return translate("בוטל השיוך לתורם ") + n.name.value;
     }
     return n.deliverStatus.displayValue;
   }
@@ -614,7 +614,7 @@ export class Families extends IdEntity {
     this.name.validationError = undefined;
     let foundExactName = false;
     for (const d of this.duplicateFamilies) {
-      let errorText = translate('ערך כבר קיים למשפחת "') + d.name + '" בכתובת ' + d.address;
+      let errorText = translate('ערך כבר קיים לתורם "') + d.name + '" בכתובת ' + d.address;
       if (d.tz)
         this.tz.validationError = errorText;
       if (d.tz2)
@@ -725,7 +725,7 @@ export class FamilyId extends IdColumn {
   constructor(settingsOrCaption?: ColumnOptions<string>) {
     super(settingsOrCaption);
     if (!this.defs.caption)
-      this.defs.caption = 'id של המשפחה באפליקצית חגי'
+      this.defs.caption = 'id של התורם באפליקצית חגי'
   }
 }
 
@@ -819,7 +819,7 @@ export class GroupsColumn extends StringColumn {
   }
   constructor(private context: Context, settingsOrCaption?: ColumnOptions<string>) {
     super({
-      caption: 'קבוצות שיוך משפחה',
+      caption: 'קבוצות שיוך תורם',
 
       dataControlSettings: () => ({
         width: '300',

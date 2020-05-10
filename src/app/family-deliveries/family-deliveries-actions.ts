@@ -25,7 +25,7 @@ class DeleteDeliveries extends ActionOnRows<ActiveFamilyDeliveries> {
             allowed: Roles.admin,
             columns: () => [],
             title: 'מחק משלוחים',
-            help: () => 'שים לב - מחיקת המשלוח לא תוציא את המשפחה מהרשימות - כדי להוציא את המשפחה מהרשימות יש לבצע עדכון לסטטוס המשפחה. המחיקה תתבצע רק עבור משלוחים שטרם נמסרו',
+            help: () => 'שים לב - מחיקת המשלוח לא תוציא את התורם מהרשימות - כדי להוציא את התורם מהרשימות יש לבצע עדכון לסטטוס התורם. המחיקה תתבצע רק עבור משלוחים שטרם נמסרו',
             forEach: async f => { f.delete(); },
             additionalWhere: f => f.deliverStatus.isNotAResultStatus()
         });
@@ -33,7 +33,7 @@ class DeleteDeliveries extends ActionOnRows<ActiveFamilyDeliveries> {
 }
 class UpdateFixedCourier extends ActionOnRows<FamilyDeliveries> {
     byCurrentCourier = new BoolColumn('עדכן את המתנדב מהמשלוח הנוכחי');
-    courier = new HelperId(this.context, 'מתנדב ברירת מחדל למשפחה');
+    courier = new HelperId(this.context, 'מתנדב ברירת מחדל לתורם');
     constructor(context: Context) {
         super(context, FamilyDeliveries, {
             allowed: Roles.admin,
@@ -45,7 +45,7 @@ class UpdateFixedCourier extends ActionOnRows<FamilyDeliveries> {
                     { column: this.courier, visible: () => !this.byCurrentCourier.value }
                 ]
             },
-            title: 'עדכן מתנדב ברירת מחדל למשפחה',
+            title: 'עדכן מתנדב ברירת מחדל לתורם',
             forEach: async fd => {
 
 
@@ -166,7 +166,7 @@ class CancelAsignment extends ActionOnRows<ActiveFamilyDeliveries> {
             allowed: Roles.distCenterAdmin,
             columns: () => [],
             title: 'בטל שיוך למתנדב',
-            help: () => 'פעולה זו תבטל את השיוך בין מתנדבים למשפחות, ותחזיר משלוחים המסומנים כ"בדרך" ל"טרם שויכו"',
+            help: () => 'פעולה זו תבטל את השיוך בין מתנדבים לתורמים, ותחזיר משלוחים המסומנים כ"בדרך" ל"טרם שויכו"',
             forEach: async f => { f.courier.value = ''; },
             additionalWhere: f => f.onTheWayFilter()
         });
@@ -259,7 +259,7 @@ export class NewDelivery extends ActionOnRows<ActiveFamilyDeliveries> {
     }
 }
 class HelperStrategy {
-    static familyDefault = new HelperStrategy(0, 'הגדר מתנדב לפי מתנדב ברירת מחדל המוגדר למשפחה', x => { });
+    static familyDefault = new HelperStrategy(0, 'הגדר מתנדב לפי מתנדב ברירת מחדל המוגדר לתורם', x => { });
     static currentHelper = new HelperStrategy(1, 'הגדר מתנדב לפי המתנדב במשלוח הנוכחי', x => {
         x.newDelivery.courier.value = x.existingDelivery.courier.value;
     });

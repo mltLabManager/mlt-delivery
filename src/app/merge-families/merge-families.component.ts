@@ -87,12 +87,12 @@ export class MergeFamiliesComponent implements OnInit {
       this.dialogRef.close();
       let deliveries = await this.context.for(ActiveFamilyDeliveries).count(fd => fd.family.isEqualTo(this.family.id).and(fd.deliverStatus.isNotAResultStatus()))
       if (deliveries > 1) {
-        if (await this.dialog.YesNoPromise("יש " + deliveries + " משלוחים פעילים למשפחה - להציג אותם?"))
+        if (await this.dialog.YesNoPromise("יש " + deliveries + " משלוחים פעילים לתורם - להציג אותם?"))
           await this.family.showDeliveryHistoryDialog();
       }
     }
     catch (err) {
-      this.dialog.Error('מיזוג משפחות ' + extractError(err));
+      this.dialog.Error('מיזוג תורמים ' + extractError(err));
     }
   }
   merged = true;

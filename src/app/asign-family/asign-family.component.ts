@@ -83,7 +83,7 @@ export class AsignFamilyComponent implements OnInit, OnDestroy {
         if (helper.theHelperIAmEscorting.value) {
             let other = await this.context.for(Helpers).findFirst(x => x.id.isEqualTo(helper.theHelperIAmEscorting));
             if (await this.context.openDialog(YesNoQuestionComponent, q => q.args = {
-                question: helper.name.value + ' מוגדר כמלווה של ' + other.name.value + '. האם להציג את המשפחות של ' + other.name.value + '?'
+                question: helper.name.value + ' מוגדר כמלווה של ' + other.name.value + '. האם להציג את התורמים של ' + other.name.value + '?'
             }, q => q.yes)) {
                 this.initHelper(other);
             }
@@ -420,7 +420,7 @@ export class AsignFamilyComponent implements OnInit, OnDestroy {
             }
             else {
                 this.refreshList();
-                this.dialog.Info(translate("לא נמצאה משפחה מתאימה"));
+                this.dialog.Info(translate("לא נמצאה תורם מתאים"));
             }
         });
     }
@@ -842,8 +842,8 @@ export class AsignFamilyComponent implements OnInit, OnDestroy {
                     if (selectStreet)
                         return;
                     let c = await f.courier.getTheName();
-                    this.dialog.YesNoQuestion(translate('משפחת ') +
-                        f.name.value + ' כבר משוייכת ל' + c + ' בסטטוס ' +
+                    this.dialog.YesNoQuestion(translate('התורם ') +
+                        f.name.value + ' כבר משוייך ל' + c + ' בסטטוס ' +
                         f.deliverStatus.displayValue + '. האם לשייך אותו למתנדב ' + this.helper.name.value + '?', () => {
                             ok();
                         });

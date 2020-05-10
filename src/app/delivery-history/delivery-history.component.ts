@@ -255,7 +255,7 @@ export class helperHistoryInfo extends Entity<string>{
   phone = new PhoneColumn("טלפון");
   company = new CompanyColumn(this.context);
   deliveries = new NumberColumn('משלוחים');
-  families = new NumberColumn('משפחות');
+  families = new NumberColumn('תורמים');
   dates = new NumberColumn("תאריכים");
   constructor(private context: Context) {
     super({ name: 'helperHistoryInfo', allowApiRead: false, allowApiCRUD: false });

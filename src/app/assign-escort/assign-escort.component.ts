@@ -87,7 +87,7 @@ export class AssignEscortComponent implements OnInit {
       if (assignedFamilies > 0) {
         await this.context.openDialog(YesNoQuestionComponent, x =>
           x.args = {
-            question: "למתנדב " + h.name.value + " כבר מוגדרות משפחות, לא ניתן להגדיר אותו כמלווה",
+            question: "למתנדב " + h.name.value + " כבר מוגדרות תורמים, לא ניתן להגדיר אותו כמלווה",
             showOnlyConfirm: true
           }
         );

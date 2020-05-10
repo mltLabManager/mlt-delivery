@@ -20,11 +20,11 @@ export class HelpersAndStats extends HelpersBase {
 
     deliveriesInProgress = new NumberColumn({
         dbReadOnly: true,
-        caption: 'משפחות מחכות'
+        caption: 'תורמים מחכים'
     });
     allDeliveires = new NumberColumn({
         dbReadOnly: true,
-        caption: 'משפחות'
+        caption: 'תורמים'
     });
   
   

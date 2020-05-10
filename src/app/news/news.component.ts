@@ -47,7 +47,7 @@ export class NewsComponent implements OnInit, OnDestroy {
 
     }
     cancelNeedWork(n: ActiveFamilyDeliveries) {
-        this.dialog.YesNoQuestion(translate('לבטל את הסימון "מצריך טיפול" למשפחת "') + n.name.value + '"?', async () => {
+        this.dialog.YesNoQuestion(translate('לבטל את הסימון "מצריך טיפול" לתורם "') + n.name.value + '"?', async () => {
             let f = await this.context.for(ActiveFamilyDeliveries).findFirst(fam => fam.id.isEqualTo(n.id));
             f.needsWork.value = false;
             await f.save();

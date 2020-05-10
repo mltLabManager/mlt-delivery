@@ -64,7 +64,7 @@ export class FamilyInfoComponent implements OnInit {
   }
   openWaze(f: ActiveFamilyDeliveries) {
     if (!f.addressOk.value) {
-      this.dialog.YesNoQuestion(translate("הכתובת אינה מדוייקת. בדקו בגוגל או התקשרו למשפחה. נשמח אם תעדכנו את הכתובת שמצאתם בהערות. האם לפתוח וייז?"), () => {
+      this.dialog.YesNoQuestion(translate("הכתובת אינה מדוייקת. בדקו בגוגל או התקשרו לתורם. נשמח אם תעדכנו את הכתובת שמצאתם בהערות. האם לפתוח וייז?"), () => {
         f.openWaze();
       });
     }

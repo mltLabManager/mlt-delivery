@@ -237,7 +237,7 @@ export class FamiliesComponent implements OnInit {
         knowTotalRows: true,
 
 
-        confirmDelete: (h, yes) => this.dialog.confirmDelete(translate('משפחת ') + h.name.value, yes),
+        confirmDelete: (h, yes) => this.dialog.confirmDelete(translate('התורם ') + h.name.value, yes),
         columnSettings: families => {
             let r = [
 
@@ -359,14 +359,14 @@ export class FamiliesComponent implements OnInit {
                             actionRowsFilterInfo: packWhere(this.context.for(Families).create(), where)
                         };
                     }, settings: this.settings,
-                    groupName: 'משפחות'
+                    groupName: 'תורמים'
                 })
             , {
                 name: 'יצוא לאקסל',
                 click: () => this.saveToExcel(),
                 visible: () => this.isAdmin
             }, {
-                name: 'מיזוג משפחות',
+                name: 'מיזוג תורמים',
                 click: async () => {
                     await this.context.openDialog(MergeFamiliesComponent, x => x.families = [...this.families.selectedRows], y => {
                         if (y.merged)
@@ -385,7 +385,7 @@ export class FamiliesComponent implements OnInit {
                 click: async f => {
                     await f.showFamilyDialog();
                 }
-                , textInMenu: () => 'פרטי משפחה'
+                , textInMenu: () => 'פרטי תורם'
             },
 
             {
@@ -398,7 +398,7 @@ export class FamiliesComponent implements OnInit {
             }
             ,
             {
-                name: 'משלוחים למשפחה',
+                name: 'משלוחים לתורם',
                 click: async f => {
                     f.showDeliveryHistoryDialog();
                 }
@@ -429,7 +429,7 @@ export class FamiliesComponent implements OnInit {
                 info
             })
             , action, args);
-        return r + ' משפחות עודכנו';
+        return r + ' תורמים עודכנו';
     }
 
 
@@ -495,7 +495,7 @@ export class FamiliesComponent implements OnInit {
         {
             rule: f => undefined,
             showTotal: true,
-            name: 'כל המשפחות',
+            name: 'כל התורמים',
             stats: [
                 this.stats.active,
                 this.stats.outOfList,
@@ -680,7 +680,7 @@ export class FamiliesComponent implements OnInit {
     static route: Route = {
         path: 'families',
         component: FamiliesComponent,
-        data: { name: 'משפחות' }, canActivate: [AdminGuard]
+        data: { name: 'תורמים' }, canActivate: [AdminGuard]
     }
 
 }
@@ -693,7 +693,7 @@ interface statsOnTab {
     rule: (f: Families) => FilterBase
 
 }
-export async function saveFamiliesToExcel(context:Context,gs:GridSettings<Families>,busy:BusyService,name='משפחות') {
+export async function saveFamiliesToExcel(context:Context,gs:GridSettings<Families>,busy:BusyService,name='תורמים') {
     await saveToExcel<Families, GridSettings<Families>>(context.for(Families), gs, translate(name), busy, (f, c) => c == f.id || c == f.addressApiResult, (f, c) => false, async (f, addColumn) => {
         let x = f.getGeocodeInformation();
         let street = f.address.value;
@@ -722,7 +722,7 @@ export async function saveFamiliesToExcel(context:Context,gs:GridSettings<Famili
             }
             catch { }
         }
-        addColumn("Xשם משפחה", lastName, 's');
+        addColumn("Xשם תורם", lastName, 's');
         addColumn("Xשם פרטי", firstName, 's');
         addColumn("Xרחוב", street, 's');
         addColumn("Xמספר בית", house, 's');

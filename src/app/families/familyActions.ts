@@ -14,7 +14,7 @@ import { ActiveFamilyDeliveries } from "./FamilyDeliveries";
 
 
 class NewDelivery extends ActionOnRows<Families> {
-    useFamilyBasket = new BoolColumn({ caption: 'השתמש בסוג הסל המוגדר למשפחה', defaultValue: false });
+    useFamilyBasket = new BoolColumn({ caption: 'השתמש בסוג הסל המוגדר לתורם', defaultValue: false });
     basketType = new BasketId(this.context);
     quantity = new QuantityColumn();
 
@@ -94,7 +94,7 @@ export class updateGroup extends ActionOnRows<Families> {
         super(context, Families, {
             columns: () => [this.group, this.action],
             confirmQuestion: () => 'האם ' + this.action.value + ' את השיוך לקבוצה "' + this.group.value + '"',
-            title: 'שיוך לקבוצת משפחות',
+            title: 'שיוך לקבוצת תורמים',
             allowed: Roles.admin,
             forEach: async f => {
                 if (this.action.value == addGroupAction) {
@@ -154,12 +154,12 @@ export class UnfreezeDeliveriesForFamilies extends ActionOnRows<Families> {
 export class UpdateStatus extends ActionOnRows<Families> {
     status = new FamilyStatusColumn();
     archiveFinshedDeliveries = new BoolColumn({ caption: "העבר משלוחים שהסתיימו לארכיון", defaultValue: true });
-    deletePendingDeliveries = new BoolColumn({ caption: "מחק משלוחים שטרם נמסרו למשפחות אלו", defaultValue: true });
+    deletePendingDeliveries = new BoolColumn({ caption: "מחק משלוחים שטרם נמסרו לתורמים אלו", defaultValue: true });
     constructor(context: Context) {
         super(context, Families, {
             allowed: Roles.admin,
             columns: () => [this.status, this.archiveFinshedDeliveries, this.deletePendingDeliveries],
-            help: () => 'סטטוס הוצא מהרשימות - נועד כדי לסמן שהמשפחה לא אמורה לקבל מזון - אבל בניגוד לסטטוס למחיקה - אנחנו רוצים לשמור אותה בבסיס הנתונים כדי שאם הרווחה יביאו לנו אותה שוב, נדע להגיד שהם הוצאו מהרשימות. זה מתאים למשפחות שחס וחלילה נפתרו או שפשוט לא רוצים לקבל - או שהכתובת לא קיימת וכו...',
+            help: () => 'סטטוס הוצא מהרשימות - נועד כדי לסמן שהתורם לא אמורה לקבל מזון - אבל בניגוד לסטטוס למחיקה - אנחנו רוצים לשמור אותה בבסיס הנתונים כדי שאם הרווחה יביאו לנו אותה שוב, נדע להגיד שהם הוצאו מהרשימות. זה מתאים לתורמים שחס וחלילה נפתרו או שפשוט לא רוצים לקבל - או שהכתובת לא קיימת וכו...',
             dialogColumns: () => {
                 if (!this.status.value)
                     this.status.value = FamilyStatus.Active;
@@ -170,7 +170,7 @@ export class UpdateStatus extends ActionOnRows<Families> {
                     { column: this.deletePendingDeliveries, visible: () => this.status.value != FamilyStatus.Active }
                 ]
             },
-            title: 'עדכן סטטוס משפחה ',
+            title: 'עדכן סטטוס תורם ',
             forEach: async f => {
                 f.status.value = this.status.value;
                 if (f.status.value != FamilyStatus.Active && (this.archiveFinshedDeliveries.value || this.deletePendingDeliveries.value)) {
@@ -210,7 +210,7 @@ export class UpdateArea extends ActionOnRows<Families> {
         super(context, Families, {
             allowed: Roles.admin,
             columns: () => [this.area],
-            title: 'עדכן אזור למשפחות',
+            title: 'עדכן אזור לתורמים',
             forEach: async f => { f.area.value = this.area.value },
         });
     }
@@ -240,7 +240,7 @@ class UpdateFamilySource extends ActionOnRows<Families> {
 }
 
 export class SelfPickupStrategy {
-    static familyDefault = new SelfPickupStrategy(0, "באים לקחת בהתאם להגדרת הברירת מחדל למשפחה", x => {
+    static familyDefault = new SelfPickupStrategy(0, "באים לקחת בהתאם להגדרת הברירת מחדל לתורם", x => {
         x.newDelivery.deliverStatus.value = x.family.defaultSelfPickup.value ? DeliveryStatus.SelfPickup : DeliveryStatus.ReadyForDelivery;
     });
     static byCurrentDelivery = new SelfPickupStrategy(1, "באים לקחת בהתאם להגדרת המשלוח הנוכחי", x => {
