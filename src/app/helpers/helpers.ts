@@ -1,6 +1,7 @@
 
 import { NumberColumn, IdColumn, Context, EntityClass, ColumnOptions, IdEntity, StringColumn, BoolColumn, EntityOptions, UserInfo, FilterBase, Entity, Column, EntityProvider, checkForDuplicateValue } from '@remult/core';
 import { changeDate, HasAsyncGetTheValue, PhoneColumn, DateTimeColumn, SqlBuilder, wasChanged } from '../model-shared/types';
+import { GeocodeInformation, GetGeoInformation, leaveOnlyNumericChars, isGpsAddress, parseUrlInAddress } from "../shared/googleApiHelpers";
 
 
 import { routeStats } from '../asign-family/asign-family.component';
@@ -29,6 +30,19 @@ export abstract class HelpersBase extends IdEntity {
         }
     });
     phone = new PhoneColumn("טלפון");
+    email = new StringColumn("email");
+
+    address = new StringColumn("כתובת", {
+        valueChange: () => {
+          if (!this.address.value)
+            return;
+          let y = parseUrlInAddress(this.address.value);
+          if (y != this.address.value)
+            this.address.value = y;
+        }
+      });
+    
+    
     smsDate = new DateTimeColumn('מועד משלוח SMS');
     company = new CompanyColumn(this.context);
     totalKm = new NumberColumn({ allowApiUpdate: Roles.distCenterAdmin });

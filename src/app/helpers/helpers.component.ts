@@ -209,6 +209,14 @@ export class HelpersComponent implements OnInit, OnDestroy {
         column: helpers.phone,
         width: '150'
       },
+      {
+        column: helpers.address,
+        width: '250'
+      },
+      {
+        column: helpers.email,
+        width: '250'
+      },
     ];
     r.push({
       column: helpers.eventComment,

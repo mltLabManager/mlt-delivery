@@ -277,6 +277,52 @@ export function isGpsAddress(address: string) {
     if (x == address && x.indexOf(',') > 5)
         return true;
 }
+
+export function parseUrlInAddress(address: string) {
+    let x = address.toLowerCase();
+    let search = 'https://maps.google.com/maps?q=';
+    if (x.startsWith(search)) {
+      x = x.substring(search.length, 1000);
+      let i = x.indexOf('&')
+      if (i >= 0) {
+        x = x.substring(0, i);
+      }
+      x = x.replace('%2c', ',');
+      return x;
+    } else if (x.startsWith('https://www.google.com/maps/place/')) {
+      let r = x.split('!3d');
+      if (r.length > 0) {
+        x = r[r.length - 1];
+        let j = x.split('!4d')
+        x = j[0] + ',' + j[1];
+        let i = x.indexOf('!');
+        if (i > 0) {
+          x = x.substring(0, i);
+        }
+        return leaveOnlyNumericChars(x);
+  
+      }
+    } else if (x.indexOf('מיקום:') >= 0) {
+      let j = x.substring(x.indexOf('מיקום:') + 6);
+      let k = j.indexOf('דיוק');
+      if (k > 0) {
+        j = j.substring(0, k);
+        j = leaveOnlyNumericChars(j);
+        if (j.indexOf(',') > 0)
+          return j;
+      }
+  
+  
+    }
+    if (isGpsAddress(address)) {
+      let x = address.split(',');
+      return (+x[0]).toFixed(6) + ',' + (+x[1]).toFixed(6);
+    }
+  
+    return address;
+  }
+
+  
 export function leaveOnlyNumericChars(x: string) {
     for (let index = 0; index < x.length; index++) {
         switch (x[index]) {

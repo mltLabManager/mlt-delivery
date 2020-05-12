@@ -8,7 +8,7 @@ import { changeDate, DateTimeColumn, SqlBuilder, PhoneColumn, delayWhileTyping }
 import { DataControlSettings, Column, Context, EntityClass, ServerFunction, IdEntity, IdColumn, StringColumn, NumberColumn, BoolColumn, SqlDatabase, DateColumn, FilterBase, ColumnOptions, SpecificEntityHelper, Entity, DataArealColumnSetting } from '@remult/core';
 import { HelperIdReadonly, HelperId, Helpers, HelperUserInfo } from "../helpers/helpers";
 
-import { GeocodeInformation, GetGeoInformation, leaveOnlyNumericChars, isGpsAddress } from "../shared/googleApiHelpers";
+import { GeocodeInformation, GetGeoInformation, leaveOnlyNumericChars, isGpsAddress, parseUrlInAddress } from "../shared/googleApiHelpers";
 import { ApplicationSettings } from "../manage/ApplicationSettings";
 import { FamilyDeliveries } from "./FamilyDeliveries";
 import * as fetch from 'node-fetch';
@@ -841,6 +841,8 @@ export class GroupsColumn extends StringColumn {
   }
 
 }
+/*
+
 export function parseUrlInAddress(address: string) {
   let x = address.toLowerCase();
   let search = 'https://maps.google.com/maps?q=';
@@ -885,7 +887,7 @@ export function parseUrlInAddress(address: string) {
   return address;
 }
 
-
+*/
 
 
 
