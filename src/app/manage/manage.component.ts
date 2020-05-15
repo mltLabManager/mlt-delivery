@@ -58,7 +58,7 @@ export class ManageComponent implements OnInit {
           x += c.defs.caption + " - " + c.validationError + " ";
         }
       }
-      this.dialog.Error(x);
+      this.dialog.Error(x); 
     }
     this.images.currentRow.save();
   }
@@ -215,7 +215,7 @@ export class ManageComponent implements OnInit {
       this.settings.showHelperComment,
       this.settings.defaultPrefixForExcelImport,
       this.settings.redTitleBar,
-      this.settings.forSoldiers,
+      this.settings.forWho,
       this.settings.manageEscorts
     ]
   });
