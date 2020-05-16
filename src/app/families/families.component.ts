@@ -683,7 +683,7 @@ export class FamiliesComponent implements OnInit {
     static route: Route = {
         path: 'families',
         component: FamiliesComponent,
-        data: { name: translate('משפחות') }, canActivate: [AdminGuard]
+        data: { name: 'משפחות' }, canActivate: [AdminGuard]
     }
 
 }
