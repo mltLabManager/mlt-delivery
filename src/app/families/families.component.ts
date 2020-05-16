@@ -432,7 +432,7 @@ export class FamiliesComponent implements OnInit {
                 info
             })
             , action, args);
-        return r + translate(' משפחות עודכנו');
+        return r + ' משפחות עודכנו';
     }
 
 
