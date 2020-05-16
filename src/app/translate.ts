@@ -4,11 +4,11 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class TranslatePipe implements PipeTransform {
   transform(value: string): string {
 
-    return translate(value);;
+    return translate(value);
   }
 }
 
-export const translationConfig = {activateTranslation : false, forWho : 1};
+export const translationConfig = {activateTranslation : false, forWho : 0};
 var terms:{[key:string]:string}={};
 
 export function translate(s: string) {
@@ -23,7 +23,9 @@ export function translate(s: string) {
         .replace(/מש' הכי קרובה/g,'תורם הכי קרוב')
         .replace(/משפחה כלשהי/g,'תורם כלשהו')
         .replace(/משפחות/g,"תורמים")
-        .replace(/משפחה/g,'תורם');
+        .replace(/משפחה/g,'תורם')
+        .replace(/חדשה/g, 'חדש')
+        .replace(/כפולות/g,'כפולים');
       }
       else if(translationConfig.forWho == 2){
         r =  s.replace(/משפחה אחת/g,"חייל אחד")
@@ -32,7 +34,9 @@ export function translate(s: string) {
         .replace(/מש' הכי קרובה/g,'חייל הכי קרוב')
         .replace(/משפחה כלשהי/g,'חייל כלשהו')
         .replace(/משפחות/g,"חיילים")
-        .replace(/משפחה/g,'חייל');
+        .replace(/משפחה/g,'חייל')
+        .replace(/חדשה/g, 'חדש')
+        .replace(/כפולות/g,'כפולים');
       }
       terms[s]=r;
     }
