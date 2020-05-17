@@ -175,7 +175,7 @@ export class HelpersComponent implements OnInit, OnDestroy {
       }
     },
     columnSettings: helpers => {
-      this.numOfColsInGrid = 4;
+      this.numOfColsInGrid = 8;
       if (this.context.isAllowed(Roles.admin))
         this.numOfColsInGrid++;
       return this.selectColumns(helpers);
@@ -209,7 +209,7 @@ export class HelpersComponent implements OnInit, OnDestroy {
         column: helpers.phone,
         width: '150'
       },
-/*      {
+      {
         column: helpers.address,
         width: '250',
         cssClass: f => {
@@ -225,7 +225,7 @@ export class HelpersComponent implements OnInit, OnDestroy {
             s = helpers;
           return s.getGeocodeInformation().getCity();
         }
-      },*/
+      },
       {
         column: helpers.email,
         width: '250'

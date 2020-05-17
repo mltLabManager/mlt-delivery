@@ -254,10 +254,10 @@ export class AsignFamilyComponent implements OnInit, OnDestroy {
                     let r = [];
                     r.push([
                         this.helper.name,
-                       // {
-                        //    caption: 'עיר איזור חלוקה',
-                        //    getValue: () => this.helper.getGeocodeInformation().getCity()
-                        //},
+                        {
+                            caption: 'עיר איזור חלוקה',
+                            getValue: () => this.helper.getGeocodeInformation().getCity()
+                        },
                     ]);
                     if (this.settings.showCompanies.value)
                         r.push([
