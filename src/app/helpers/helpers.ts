@@ -32,7 +32,7 @@ export abstract class HelpersBase extends IdEntity {
     phone = new PhoneColumn("טלפון");
     email = new StringColumn("email");
 
-    address = new StringColumn("כתובת", {
+    address = new StringColumn("כתובת");/*, {
         valueChange: () => {
           if (!this.address.value)
             return;
@@ -40,9 +40,19 @@ export abstract class HelpersBase extends IdEntity {
           if (y != this.address.value)
             this.address.value = y;
         }
-      });
-    
-    
+    });
+*/    
+/*
+    addressApiResult = new StringColumn();
+    private _lastString: string;
+    private _lastGeo: GeocodeInformation;
+    getGeocodeInformation() {
+      if (this._lastString == this.addressApiResult.value)
+        return this._lastGeo ? this._lastGeo : new GeocodeInformation();
+      this._lastString = this.addressApiResult.value;
+      return this._lastGeo = GeocodeInformation.fromString(this.addressApiResult.value);
+    }
+*/
     smsDate = new DateTimeColumn('מועד משלוח SMS');
     company = new CompanyColumn(this.context);
     totalKm = new NumberColumn({ allowApiUpdate: Roles.distCenterAdmin });
@@ -163,7 +173,15 @@ export class Helpers extends HelpersBase {
                         }
                     }
 
-                }
+/*
+                    if (this.address.value != this.address.originalValue || !this.getGeocodeInformation().ok()) {
+                        let geo = await GetGeoInformation(this.address.value, context);
+                        this.addressApiResult.value = geo.saveToString();
+                        if (geo.ok()) {
+                        }
+                    }
+*/
+               }
 
             },
             apiDataFilter: () => {

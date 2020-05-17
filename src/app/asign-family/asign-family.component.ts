@@ -247,27 +247,26 @@ export class AsignFamilyComponent implements OnInit, OnDestroy {
         this.settings.save();
     }
 
-
-
-
-
-
-
-
     private initArea() {
         if (this.helper)
             this.area = new DataAreaSettings({
                 columnSettings: () => {
                     let r = [];
+                    r.push([
+                        this.helper.name,
+                       // {
+                        //    caption: 'עיר איזור חלוקה',
+                        //    getValue: () => this.helper.getGeocodeInformation().getCity()
+                        //},
+                    ]);
                     if (this.settings.showCompanies.value)
-                        r.push([this.helper.name,
+                        r.push([
                         {
                             column: this.helper.company,
                             click: () => this.findCompany(),
                             clickIcon: 'search'
-                        }
+                        },
                         ]);
-                    else r.push([this.helper.name]);
                     if (this.settings.showHelperComment.value)
                         r.push(this.helper.eventComment);
                     if (this.settings.manageEscorts.value) {

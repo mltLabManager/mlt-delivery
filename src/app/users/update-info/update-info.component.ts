@@ -29,6 +29,8 @@ export class UpdateInfoComponent implements OnInit {
     columnSettings: h => [
       h.name,
       h.phone,
+      h.email,
+      //h.address,
       //h.userName,
       h.password,
       { column: this.confirmPassword },

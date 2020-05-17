@@ -209,10 +209,23 @@ export class HelpersComponent implements OnInit, OnDestroy {
         column: helpers.phone,
         width: '150'
       },
-      {
+/*      {
         column: helpers.address,
-        width: '250'
+        width: '250',
+        cssClass: f => {
+          if (!f.getGeocodeInformation().ok())
+              return 'addressProblem';
+          return '';
+        }
       },
+      {
+        caption: 'עיר',
+        getValue: s => {
+          if (s === undefined)
+            s = helpers;
+          return s.getGeocodeInformation().getCity();
+        }
+      },*/
       {
         column: helpers.email,
         width: '250'
