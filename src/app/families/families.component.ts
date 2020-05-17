@@ -256,7 +256,10 @@ export class FamiliesComponent implements OnInit {
                 },
                 families.phone1,
 
-                { column: families.groups },
+                { 
+                    column: families.groups,
+                    caption: translate('קבוצות שיוך משפחה')
+                },
 
                 families.familyMembers,
                 families.familySource,
@@ -359,14 +362,14 @@ export class FamiliesComponent implements OnInit {
                             actionRowsFilterInfo: packWhere(this.context.for(Families).create(), where)
                         };
                     }, settings: this.settings,
-                    groupName: 'משפחות'
+                    groupName: translate('משפחות')
                 })
             , {
                 name: 'יצוא לאקסל',
                 click: () => this.saveToExcel(),
                 visible: () => this.isAdmin
             }, {
-                name: 'מיזוג משפחות',
+                name: translate('מיזוג משפחות'),
                 click: async () => {
                     await this.context.openDialog(MergeFamiliesComponent, x => x.families = [...this.families.selectedRows], y => {
                         if (y.merged)
@@ -385,7 +388,7 @@ export class FamiliesComponent implements OnInit {
                 click: async f => {
                     await f.showFamilyDialog();
                 }
-                , textInMenu: () => 'פרטי משפחה'
+                , textInMenu: () => translate('פרטי משפחה')
             },
 
             {
@@ -398,7 +401,7 @@ export class FamiliesComponent implements OnInit {
             }
             ,
             {
-                name: 'משלוחים למשפחה',
+                name: translate('משלוחים למשפחה'),
                 click: async f => {
                     f.showDeliveryHistoryDialog();
                 }
@@ -495,7 +498,7 @@ export class FamiliesComponent implements OnInit {
         {
             rule: f => undefined,
             showTotal: true,
-            name: 'כל המשפחות',
+            name: translate('כל המשפחות'),
             stats: [
                 this.stats.active,
                 this.stats.outOfList,
